@@ -27,6 +27,7 @@ For now you can only build for Windows using supplied solution/project files.
 
 # Running
 
+```
 --io_factor       Amount of files being simultaneously written to /read from disk.
 --port            Port to connect to/listen on. Defaults to 55555
 --ip              Address to connect to/listen on. Listen address defaults to 0.0.0.0
@@ -34,6 +35,7 @@ For now you can only build for Windows using supplied solution/project files.
 --watch           Makes client watch for changes after performing initial sync
 --directory       Source directory for client, or destination directory when --listen is specified
 --local_directory Destination directory in case of local sync
+```
 
 ## TODO
 
