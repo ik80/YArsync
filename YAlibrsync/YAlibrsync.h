@@ -55,11 +55,11 @@ namespace YAlibrsync
 
 		ScopedSemaphoreAcqRel() = delete;
 		ScopedSemaphoreAcqRel(CountingSemaphore& semaphoreToTick) : pSemaphore(&semaphoreToTick) { pSemaphore->wait(); }
-		~ScopedSemaphoreAcqRel() { pSemaphore->signal(); };
+		~ScopedSemaphoreAcqRel() { if (pSemaphore) pSemaphore->signal(); };
 		ScopedSemaphoreAcqRel(const ScopedSemaphoreAcqRel&) = delete;
-		ScopedSemaphoreAcqRel(ScopedSemaphoreAcqRel&&) = default;
+		ScopedSemaphoreAcqRel(ScopedSemaphoreAcqRel&& other) { pSemaphore = other.pSemaphore; other.pSemaphore = nullptr; };
 		ScopedSemaphoreAcqRel& operator=(const ScopedSemaphoreAcqRel&) = delete;
-		ScopedSemaphoreAcqRel& operator=(ScopedSemaphoreAcqRel&&) = default;
+		ScopedSemaphoreAcqRel& operator=(ScopedSemaphoreAcqRel&& other) { pSemaphore = other.pSemaphore; other.pSemaphore = nullptr; };
 	private:
 		CountingSemaphore* pSemaphore = nullptr;
 	};
